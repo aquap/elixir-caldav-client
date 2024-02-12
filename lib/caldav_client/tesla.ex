@@ -20,9 +20,11 @@ defmodule CalDAVClient.Tesla do
   defp auth_middleware(%CalDAVClient.Auth.Basic{}), do: Tesla.Middleware.BasicAuth
   defp auth_middleware(%CalDAVClient.Auth.Digest{}), do: Tesla.Middleware.DigestAuth
   defp auth_middleware(%CalDAVClient.Auth.Bearer{}), do: Tesla.Middleware.BearerAuth
+  defp auth_middleware(%CalDAVClient.Auth.None{}), do: nil
 
   defp credentials(auth = %{username: _, password: _}), do: Map.from_struct(auth)
   defp credentials(%{token: token}), do: [token: token]
+  defp credentials(%{}), do: nil
 end
 
 defmodule CalDAVClient.Tesla.ContentTypeXMLMiddleware do

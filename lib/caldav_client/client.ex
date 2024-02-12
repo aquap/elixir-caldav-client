@@ -8,15 +8,17 @@ defmodule CalDAVClient.Client do
     * `t:CalDAVClient.Auth.Basic.t/0` - Basic authentication
     * `t:CalDAVClient.Auth.Digest.t/0` - Digest authentication
     * `t:CalDAVClient.Auth.Bearer.t/0` - Bearer (token) authentication
+    * `t:CalDAVClient.Auth.None.t/0` - No authentication
   """
 
   alias CalDAVClient.Auth.Basic
   alias CalDAVClient.Auth.Digest
   alias CalDAVClient.Auth.Bearer
+  alias CalDavClient.Auth.None
 
   @type t :: %__MODULE__{
           server_url: String.t(),
-          auth: Basic.t() | Digest.t() | Bearer.t()
+          auth: Basic.t() | Digest.t() | Bearer.t() | None.t()
         }
 
   @enforce_keys [:server_url, :auth]
