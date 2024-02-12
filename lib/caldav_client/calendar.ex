@@ -7,6 +7,7 @@ defmodule CalDAVClient.Calendar do
   import CalDAVClient.Tesla
 
   @xml_middlewares [
+    Tesla.Middleware.Logger,
     CalDAVClient.Tesla.ContentTypeXMLMiddleware,
     CalDAVClient.Tesla.ContentLengthMiddleware
   ]
