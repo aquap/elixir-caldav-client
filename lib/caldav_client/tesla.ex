@@ -11,10 +11,9 @@ defmodule CalDAVClient.Tesla do
           Tesla.Client.t()
   def make_tesla_client(%{server_url: server_url, auth: auth}, middleware \\ []) do
     Tesla.client([
-      {Tesla.Middleware.BaseUrl, server_url},
+      #{Tesla.Middleware.BaseUrl, server_url},
       #{auth_middleware(auth), credentials(auth)}
-      {}
-      | middleware
+      {Tesla.Middleware.BaseUrl, server_url} | middleware
     ])
   end
 
